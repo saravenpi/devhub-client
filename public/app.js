@@ -2,13 +2,13 @@ new Vue({
   el: '#app',
 
   data: {
-    socket: null, // Our websocket
-    newMsg: '', // Holds new messages to be sent to the server
-    chatContent: '', // A running list of chat messages displayed on the screen
+    newMsg: '',
+    cookie: localStorage.getItem("cookie"),
+    chatContent: '',
     Type: "controller",
-    username: "hiro",
+    username: localStorage.getItem("username"),
     usericon: "https://vignette.wikia.nocookie.net/tangled-fanon/images/0/0f/Hiro.jpg",
-    controllericon: "http://images6.fanpop.com/image/photos/37600000/transparent-Honey-Lemon-icon-Fantasy-Football-big-hero-6-37654514-273-273.png",
+    controllericon: "https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png",
     controllername: "Controller",
     servername: "Server",
     servericon: "https://support.upwork.com/hc/article_attachments/360040474034/chatbot-data.png"
@@ -16,22 +16,52 @@ new Vue({
 
   created: function() {
     var self = this;
-
+    self.refresh()
 
   },
 
   methods: {
 
-    initsocket: function() {
 
+    refresh: function() {
+      var self = this;
+      self.chatContent = ''
+      var cookie = self.cookie
+      var options = {
+        method: 'POST',
+        headers: {
+          "informations": cookie
+        },
+      }
+      fetch("/refresh", options).then(function(json) {
+        json.json().then(function(final) {
+          var posts = final.posts
+          for (var i = 0; i < posts.length; i++) {
+            var post = posts[i]
+            self.log(post.post.user.username, post.post.content)
+          }
+        });
+      });
     },
-
     send: function() {
       var self = this;
       if (this.newMsg != '') {
 
-        var query = this.newMsg
-        this.newMsg = ''; // Reset newMsg
+        var content = this.newMsg
+        var cookie = self.cookie
+
+        var options = {
+          method: 'POST',
+          headers: {
+            "informations": cookie,
+            "content": content
+          },
+
+        }
+        fetch("/post", options)
+        this.newMsg = '';
+        self.refresh();
+
 
 
       }
@@ -41,15 +71,18 @@ new Vue({
 
     },
 
-    log: function(content) {
+    log: function(username, content) {
 
       var self = this;
-
+      var avatar = self.controllericon
+      if (username == self.username) {
+        var avatar = self.usericon
+      }
       var msg = content
       self.chatContent += '<div class="chip">' +
-        '<img src="' + this.controllericon + '">' // Avatar
+        '<img src="' + avatar + '">' // Avatar
         +
-        this.controllername +
+        username +
         '</div>' +
         msg + '<br/>';
 
