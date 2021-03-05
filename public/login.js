@@ -14,7 +14,7 @@ function login() {
 
   var json = {
     method: 'POST',
-    mode: 'opaque',
+    mode: 'no-cors',
     headers: myHeaders,
     body: raw
   }
