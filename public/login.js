@@ -3,20 +3,24 @@ function login() {
   if (username.trim() == '') return console.log("username can't be empty")
   var password = document.getElementById("password").value
   if (password.trim() == '') return console.log("password can 't be empty")
-  const json = {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      "Content-type": "application/json"
-    },
-    body: JSON.stringify({
-      username: username,
-      password: password
-    })
+  console.log(username);
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
 
+  var raw = JSON.stringify({
+    "username": username,
+    "password": password
+  })
+
+  var json = {
+    method: 'POST',
+    mode: 'opaque',
+    headers: myHeaders,
+    body: raw
   }
 
-  fetch("https://devhub-driaug.herokuapp.com/api/auth/login", json).then(update());
+  fetch("https://devhub-driaug.herokuapp.com/api/auth/login", json).then(function() {
+    console.log("requested")
+  });
 
 }
