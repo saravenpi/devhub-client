@@ -1,0 +1,125 @@
+/* this file is loaded by index.html and styles the page */
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@900&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Rubik";
+  margin: 0;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #654321;
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 17px;
+  text-decoration: none;
+  font-size: 25px;
+  line-height: 25px;
+  border-radius: 10px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 17px;
+}
+
+.header a.active:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: #deb887;
+  color: black;
+  margin-left: 10px;
+}
+
+.header-right {
+  float: right;
+}
+
+.hero {
+  background-color: #fff8dc;
+  height: 85%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.middle-container {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+.about {
+  background-color: #efe9ce;
+}
+
+
+.container {
+  padding: 40px;
+}
+
+.container h1 {
+  font-size: 50px;
+  padding-bottom: 20px;
+}
+.container h2 {
+  font-size: 34px;
+  font-family: monospace;
+}
+.parag {
+  font-size: 25px;
+  font-family: monospace;
+  padding-left: 100px;
+}
+
+
+.title {
+  font-size: 70px;
+  color: #00802b;
+}
+.door {
+  color: #fff8dc;
+  text-align: left;
+  border-radius: 10px;
+  background-color: #654321;
+  padding: 15px;
+  width: auto;
+}
+.door .input {
+  color: black;
+  padding: 12px;
+  border: 1px solid #00802b;
+  border-radius: 10px;
+  background-color: fff8dc;
+
+}
+.door .button {
+  color: black;
+  padding: 12px;
+  border: 1px solid #00802b;
+  border-radius: 10px;
+  background-color: fff8dc;
+
+}
+
+.door .p {
+  padding-bottom: 12px;
+}
+
+.door .container {
+  padding: 15px;
+}
