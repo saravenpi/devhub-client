@@ -1,3 +1,9 @@
+if (self.cookie != null) {
+  window.location = "/app"
+} else {
+  //
+}
+
 function login() {
   var username = document.getElementById("username").value
   if (username.trim() == '') return console.log("username can't be empty")

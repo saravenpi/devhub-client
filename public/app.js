@@ -15,8 +15,14 @@ new Vue({
   },
 
   created: function() {
+
     var self = this;
-    self.refresh()
+    if (self.cookie != null) {
+      self.refresh()
+    } else {
+      window.location = "/login"
+    }
+
 
   },
 
