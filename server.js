@@ -103,6 +103,30 @@ app.post("/rlogin", (request, response) => {
 
 
 });
+
+
+app.post("/rregister", (request, response) => {
+  var username = request.headers.username
+  var password = request.headers.password
+  const data = {
+    username,
+    password,
+  };
+
+  axios
+    .post("https://devhub-driaug.herokuapp.com/api/auth/signup", data)
+    .then(function(res) {
+      var json = {
+        "status": "successfully created"
+      }
+      response.json(json)
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+
+
+});
 const listener = app.listen(process.env.PORT, () => {
   console.log("🌵" + colors.rainbow(" - SERVER RUNNING ON PORT: ") + colors.cyan(listener.address().port));
 });
