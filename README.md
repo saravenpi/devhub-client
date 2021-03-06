@@ -4,7 +4,7 @@
 
 ## What is DevHub:
 
-I'm not the author of DevHub (it's creator is [driaug](https://www.reddit.com/user/Driaug/)). Let me tell you a story: I was scrolling on Reddit, and saw [this post](https://www.reddit.com/r/ProgrammerHumor/comments/lxtine/devhub_the_backend_only_social_media/), the concept is a "backend only" social media, designed for the programmers.
+I'm not the author of DevHub (its creators are [driaug](https://github.com/driaug) and [boon-cpu](https://github.com/boon-cpu)). Let me tell you a story: I was scrolling on Reddit, and saw [this post](https://www.reddit.com/r/ProgrammerHumor/comments/lxtine/devhub_the_backend_only_social_media/), the concept is a "backend only" social media, designed for the programmers.
 So I wanted to make a client for the app!
 
 ## How it looks like:
