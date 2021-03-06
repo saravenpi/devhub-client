@@ -5,14 +5,10 @@ new Vue({
     newMsg: '',
     cookie: localStorage.getItem("cookie"),
     chatContent: '',
-    Type: "controller",
     lastPost: '',
     username: localStorage.getItem("username"),
     usericon: "https://vignette.wikia.nocookie.net/tangled-fanon/images/0/0f/Hiro.jpg",
-    controllericon: "https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png",
-    controllername: "Controller",
-    servername: "Server",
-    servericon: "https://support.upwork.com/hc/article_attachments/360040474034/chatbot-data.png"
+    controllericon: "https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png"
   },
 
   created: function() {
@@ -113,13 +109,12 @@ new Vue({
 
 var mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {
   scrollFunction()
 };
 
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
