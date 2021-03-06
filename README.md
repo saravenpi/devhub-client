@@ -13,7 +13,7 @@ So I wanted to make a client for the app!
 
 ## Online deploy:
 
-### There is a running deploy currently on Heroku, [here](https://devhub-client.herokuapp.com)
+### There is a online deploy currently running on Heroku, [here](https://devhub-client.herokuapp.com)
 
 ## How to use it:
 
