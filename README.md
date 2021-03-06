@@ -7,6 +7,14 @@
 I'm not the author of DevHub (it's creator is [driaug](https://www.reddit.com/user/Driaug/)). Let me tell you a story: I was scrolling on Reddit, and saw [this post](https://www.reddit.com/r/ProgrammerHumor/comments/lxtine/devhub_the_backend_only_social_media/), the concept is a "backend only" social media, designed for the programmers.
 So I wanted to make a client for the app, and for this project, it will rest in the command line interface!
 
+## How it looks like:
+
+![screenshot](https://i.imgur.com/h1mEub4.png)
+
+## Online deploy:
+
+### There is a running deploy currently on Heroku, [here](https://devhub-client.herokuapp.com)
+
 ## How to use it:
 
 - You just have to clone it and make sure to have [node](https://nodejs.org) installed and also [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (the node package manager)

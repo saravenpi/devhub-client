@@ -28,7 +28,12 @@ new Vue({
   },
 
   methods: {
-
+    logout: function(id) {
+      var self = this;
+      self.cookie = '';
+      localStorage.clear();
+      window.location = "/"
+    },
 
     refresh: function(id) {
       var self = this;
@@ -50,7 +55,7 @@ new Vue({
           for (var i = 0; i < posts.length; i++) {
             var post = posts[i]
             self.lastPost = post.post._id
-            self.log(post.post.user.username, post.post.content)
+            self.log(post.post.user.username, post.post.content, post.likes, post.post.date)
           }
         });
       });
@@ -80,7 +85,7 @@ new Vue({
       var self = this;
       self.refresh(self.lastPost)
     },
-    log: function(username, content) {
+    log: function(username, content, likes, date) {
 
       var self = this;
       var avatar = self.controllericon
@@ -91,55 +96,17 @@ new Vue({
       self.chatContent += '<div class="card">' +
         '<img class="avatar" src="' + avatar + '" width="50px" style="border-radius: 50%">' +
         '<div class="caption">' +
-
         '<div class="username">' + username + '</div>' +
-        '<div class="content">' + msg + '</div>' +
-
+        '<div class="content">' + content + '</div>' +
+        '<div class="likes">' + "💚" + likes + '</div>' +
+        '<div class="date">' + date + '</div>' +
         '</div>' +
         '</div><br>';
 
       var element = document.getElementById('chat-messages');
       element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
     },
-    slog: function(content) {
 
-      var self = this;
-
-      var msg = content
-      self.chatContent += '<div class="chip">' +
-        '<img src="' + this.servericon + '">' // Avatar
-        +
-        this.servername +
-        '</div>' +
-        msg + '<br/>';
-
-      var element = document.getElementById('chat-messages');
-      element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
-    },
-    disp: function(content) {
-
-      var self = this;
-
-      var msg = content
-      self.chatContent += '<div class="chip">' +
-        '<img src="' + this.usericon + '">' // Avatar
-        +
-        this.username +
-        '</div>' +
-        msg + '<br/>';
-
-      var element = document.getElementById('chat-messages');
-      element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
-    },
-    emit: function(event, content, data) {
-      this.socket.send(
-        JSON.stringify({
-          content: content,
-          type: this.Type,
-          event: event,
-          data: data
-        }));
-    }
   }
 });
 

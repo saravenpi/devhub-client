@@ -31,11 +31,13 @@ body {
   font-size: 25px;
   font-weight: bold;
   padding: 17px;
+  color: white;
 }
 
 .header a.active:hover {
   background-color: #ddd;
   color: black;
+  cursor: pointer;
 }
 
 .header a.active {
@@ -43,12 +45,16 @@ body {
   color: black;
   margin-left: 10px;
 }
+
 .header a.activered {
   background-color: #d31349;
   color: white;
   margin-left: 10px;
 }
-
+.header a.activered:hover {
+  cursor: pointer;
+  background-color: #555;
+}
 .header-right {
   float: right;
 }
@@ -195,7 +201,7 @@ body {
   margin-top: 2px;
   font-weight: 400;
   text-decoration: underline;
-  font-size: 15px;
+  font-size: 20px;
 
 }
 .card .content {
@@ -203,7 +209,24 @@ body {
   margin-top: 2px;
   font-weight: 400;
 
+  font-size: 17px;
+
+}
+
+.card .likes {
+  color: #00802b;
+  margin-top: 2px;
+  font-weight: 200;
+
   font-size: 15px;
+
+}
+
+.card .date {
+  color: #00802b;
+  margin-top: 2px;
+  font-weight: 200;
+  font-size: 10px;
 
 }
 
@@ -228,5 +251,17 @@ body {
 }
 
 .more {
+
   color: #fff8dc;
+  background-color: #00802b;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.more:hover{
+  cursor: pointer;
+  color: white;
+  background-color: #555;
+  padding: 10px;
+
 }
