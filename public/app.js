@@ -6,6 +6,7 @@ new Vue({
     cookie: localStorage.getItem("cookie"),
     chatContent: '',
     Type: "controller",
+    lastPost: '',
     username: localStorage.getItem("username"),
     usericon: "https://vignette.wikia.nocookie.net/tangled-fanon/images/0/0f/Hiro.jpg",
     controllericon: "https://www.shareicon.net/data/2016/05/24/770117_people_512x512.png",
@@ -18,7 +19,7 @@ new Vue({
 
     var self = this;
     if (self.cookie != null) {
-      self.refresh()
+      self.refresh(0)
     } else {
       window.location = "/login"
     }
@@ -29,14 +30,18 @@ new Vue({
   methods: {
 
 
-    refresh: function() {
+    refresh: function(id) {
       var self = this;
-      self.chatContent = ''
+      if (id == 0) {
+        self.chatContent = ''
+        var id = "non"
+      }
       var cookie = self.cookie
       var options = {
         method: 'POST',
         headers: {
-          "informations": cookie
+          "informations": cookie,
+          "lastpost": id
         },
       }
       fetch("/refresh", options).then(function(json) {
@@ -44,6 +49,7 @@ new Vue({
           var posts = final.posts
           for (var i = 0; i < posts.length; i++) {
             var post = posts[i]
+            self.lastPost = post.post._id
             self.log(post.post.user.username, post.post.content)
           }
         });
@@ -66,17 +72,14 @@ new Vue({
         }
         fetch("/post", options)
         this.newMsg = '';
-        self.refresh();
-
-
-
+        self.refresh(0);
       }
-
-
-
-
     },
 
+    more: function() {
+      var self = this;
+      self.refresh(self.lastPost)
+    },
     log: function(username, content) {
 
       var self = this;
@@ -85,12 +88,15 @@ new Vue({
         var avatar = self.usericon
       }
       var msg = content
-      self.chatContent += '<div class="chip">' +
-        '<img src="' + avatar + '">' // Avatar
-        +
-        username +
+      self.chatContent += '<div class="card">' +
+        '<img class="avatar" src="' + avatar + '" width="50px" style="border-radius: 50%">' +
+        '<div class="caption">' +
+
+        '<div class="username">' + username + '</div>' +
+        '<div class="content">' + msg + '</div>' +
+
         '</div>' +
-        msg + '<br/>';
+        '</div><br>';
 
       var element = document.getElementById('chat-messages');
       element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
@@ -136,3 +142,25 @@ new Vue({
     }
   }
 });
+
+
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {
+  scrollFunction()
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}

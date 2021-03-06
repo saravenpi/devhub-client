@@ -1,4 +1,4 @@
-if (self.cookie != null) {
+if (localStorage.getItem("cookie") != null) {
   window.location = "/app"
 } else {
   //

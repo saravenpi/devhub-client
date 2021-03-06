@@ -24,7 +24,13 @@ app.get("/app", (request, response) => {
 app.post("/refresh", (request, response) => {
 
   var cookie = request.headers.informations
+  if (request.headers.lastpost && request.headers.lastpost != "non") {
+    var id = request.headers.lastpost
+    var lastpost = "?id=" + id
 
+  } else {
+    var lastpost = ''
+  }
   var options = {
     body: JSON.stringify({}),
     headers: {
@@ -32,9 +38,8 @@ app.post("/refresh", (request, response) => {
       cookie: cookie,
     },
     method: "GET",
-    uri: "https://devhub-driaug.herokuapp.com/api/posts/post",
+    uri: `https://devhub-driaug.herokuapp.com/api/posts/post${lastpost}`,
   }
-
   rp(options).then(function(body) {
 
     var final = JSON.parse(body);
