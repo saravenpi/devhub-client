@@ -51,7 +51,7 @@ new Vue({
           for (var i = 0; i < posts.length; i++) {
             var post = posts[i]
             self.lastPost = post.post._id
-            self.log(post.post.user.username, post.post.content, post.likes, post.post.date)
+            self.log(post.post.user.username, post.post.content, post.likes, post.post.date, post.post._id)
           }
         });
       });
@@ -81,7 +81,11 @@ new Vue({
       var self = this;
       self.refresh(self.lastPost)
     },
-    log: function(username, content, likes, date) {
+
+    like: function(id) {
+      //likes post requested id
+    }
+    log: function(username, content, likes, date, id) {
 
       var self = this;
       var avatar = self.controllericon
@@ -94,7 +98,7 @@ new Vue({
         '<div class="caption">' +
         '<div class="username">' + username + '</div>' +
         '<div class="content">' + content + '</div>' +
-        '<div class="likes">' + "💚" + likes + '</div>' +
+        '<div class="likes" @click="like(' + id + ')">' + "💚" + likes + '</div>' +
         '<div class="date">' + date + '</div>' +
         '</div>' +
         '</div><br>';
