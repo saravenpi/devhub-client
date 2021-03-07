@@ -84,7 +84,7 @@ new Vue({
 
     like: function(id) {
       //likes post requested id
-    }
+    },
     log: function(username, content, likes, date, id) {
 
       var self = this;
