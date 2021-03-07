@@ -71,9 +71,11 @@ new Vue({
           },
 
         }
-        fetch("/post", options)
-        this.newMsg = '';
-        self.refresh(0);
+        fetch("/post", options).then(function() {
+          this.newMsg = '';
+          self.refresh(0);
+        });
+
       }
     },
 
@@ -82,9 +84,6 @@ new Vue({
       self.refresh(self.lastPost)
     },
 
-    like: function(id) {
-      //likes post requested id
-    },
     log: function(username, content, likes, date, id) {
 
       var self = this;
@@ -98,7 +97,7 @@ new Vue({
         '<div class="caption">' +
         '<div class="username">' + username + '</div>' +
         '<div class="content">' + content + '</div>' +
-        '<div class="likes" @click="like(' + id + ')">' + "💚" + likes + '</div>' +
+        '<div class="likes" id="' + id + '" onclick="like(' + "'" + id + "'" + ')">' + "💚" + likes + '</div>' +
         '<div class="date">' + date + '</div>' +
         '</div>' +
         '</div><br>';
@@ -129,4 +128,20 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+
+function like(id) {
+  console.log(id)
+  var cookie = localStorage.getItem("cookie");
+  var options = {
+    method: 'POST',
+    headers: {
+      "informations": cookie,
+      "postid": id
+    }
+  }
+  fetch("/like", options).then(function() {
+    window.location.reload();
+  })
+
 }

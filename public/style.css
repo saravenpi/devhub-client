@@ -208,7 +208,6 @@ body {
   color: black;
   margin-top: 2px;
   font-weight: 400;
-
   font-size: 17px;
 
 }
@@ -217,9 +216,12 @@ body {
   color: #00802b;
   margin-top: 2px;
   font-weight: 200;
-
   font-size: 15px;
-
+}
+.card .likes:hover {
+  cursor: pointer;
+  color: #555;
+  text-decoration: underline;
 }
 
 .card .date {

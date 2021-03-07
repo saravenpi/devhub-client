@@ -81,6 +81,33 @@ app.post("/post", (request, response) => {
   });
 });
 
+app.post("/like", (request, response) => {
+
+  var cookie = request.headers.informations
+  var postid = request.headers.postid
+
+  var options = {
+    body: JSON.stringify({
+      postId: postid
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      cookie: cookie,
+    },
+    method: "POST",
+    uri: "https://devhub-driaug.herokuapp.com/api/likes/like",
+  }
+
+  rp(options).then(function(body) {
+
+    var final = JSON.parse(body);
+    response.json({
+      res: final
+    })
+
+
+  });
+});
 
 app.post("/rlogin", (request, response) => {
   var username = request.headers.username
