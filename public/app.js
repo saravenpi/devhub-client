@@ -71,11 +71,19 @@ new Vue({
           },
 
         }
-        fetch("/post", options).then(function() {
-          this.newMsg = '';
-          self.refresh(0);
+        fetch("/post", options).then(function(json) {
+          json.json().then(function(final) {
+            this.newMsg = '';
+            var post = final.res.data
+            console.log(post);
+            var username = post.user.username
+            var content = post.content
+            var likes = 0
+            var date = post.date
+            var id = post._id
+            self.slog(username, content, likes, date, id)
+          });
         });
-
       }
     },
 
@@ -88,22 +96,54 @@ new Vue({
 
       var self = this;
       var avatar = self.controllericon
+      var heart = "💚"
+      var endline = ' onclick="like(' + "'" + id + "'" + ')">'
+      var cssclass = "likes"
       if (username == self.username) {
         var avatar = self.usericon
+        //var heart = "🖤"
+        var heart = "💚"
+        var endline = '>'
+        var cssclass = "liked"
       }
-      var msg = content
       self.chatContent += '<div class="card">' +
         '<img class="avatar" src="' + avatar + '" width="50px" style="border-radius: 50%">' +
         '<div class="caption">' +
         '<div class="username">' + username + '</div>' +
         '<div class="content">' + content + '</div>' +
-        '<div class="likes" id="' + id + '" onclick="like(' + "'" + id + "'" + ')">' + "💚" + likes + '</div>' +
+        '<div class="' + cssclass + '" id="' + id + '"' + endline + heart + likes + '</div>' +
         '<div class="date">' + date + '</div>' +
         '</div>' +
         '</div><br>';
 
       var element = document.getElementById('chat-messages');
       element.scrollTop = element.scrollHeight; // Auto scroll to the bottom
+    },
+    slog: function(username, content, likes, date, id) {
+
+      var self = this;
+      var avatar = self.controllericon
+      var heart = "💚"
+      var endline = ' onclick="like(' + "'" + id + "'" + ')">'
+      var cssclass = "likes"
+      if (username == self.username) {
+        var avatar = self.usericon
+        //var heart = "🖤"
+        var heart = "💚"
+        var endline = '>'
+        var cssclass = "liked"
+      }
+
+      self.chatContent = '<div class="card">' +
+        '<img class="avatar" src="' + avatar + '" width="50px" style="border-radius: 50%">' +
+        '<div class="caption">' +
+        '<div class="username">' + username + '</div>' +
+        '<div class="content">' + content + '</div>' +
+        '<div class="' + cssclass + '" id="' + id + '"' + endline + heart + likes + '</div>' +
+        '<div class="date">' + date + '</div>' +
+        '</div>' +
+        '</div><br>' +
+        self.chatContent
     },
 
   }

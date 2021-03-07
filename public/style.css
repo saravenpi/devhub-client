@@ -224,6 +224,15 @@ body {
   text-decoration: underline;
 }
 
+.card .liked {
+  color: #00802b;
+  margin-top: 2px;
+  font-weight: 200;
+  font-size: 15px;
+}
+.card .liked:hover {
+  cursor: not-allowed;
+}
 .card .date {
   color: #00802b;
   margin-top: 2px;
